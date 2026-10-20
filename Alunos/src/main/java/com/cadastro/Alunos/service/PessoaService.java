@@ -23,7 +23,7 @@ public class PessoaService {
     }
 
     /*
-
+    arrumarr
     public PessoaEntity atualizar(Integer id, PessoaEntity pessoa){
         return repository.save(pessoa);
     }
@@ -31,4 +31,6 @@ public class PessoaService {
     public void excluir(int id){
         repository.deleteById(id);
     }
+
+     */
 }

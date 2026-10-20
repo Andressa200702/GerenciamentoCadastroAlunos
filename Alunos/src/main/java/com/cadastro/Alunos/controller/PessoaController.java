@@ -20,11 +20,11 @@ public class PessoaController {
         return service.salvar(pessoa);
     }
 
+    /*
+    arrumar
     @GetMapping ("/{id}")
     public PessoaEntity buscar(@PathVariable int id){
         service.buscar(id);
-        if (pessoa.isEm)
-
     }
 
     @PutMapping("/{id}")
@@ -36,4 +36,6 @@ public class PessoaController {
     public PessoaRepository excluir(@PathVariable int id){
         service.excluir(id);
     }
+     */
+
 }
