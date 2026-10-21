@@ -8,29 +8,36 @@ import java.util.Optional;
 
 @Service
 public class PessoaService {
-    private PessoaRepository repository;
 
-    public PessoaService(PessoaRepository repository){
+    private final PessoaRepository repository;
+
+    public PessoaService(PessoaRepository repository) {
         this.repository = repository;
     }
 
-    public PessoaEntity salvar(PessoaEntity pessoa){
+    public PessoaEntity salvar(PessoaEntity pessoa) {
         return repository.save(pessoa);
     }
 
-    public Optional<PessoaEntity> buscar(int id){
+    public Optional<PessoaEntity> buscar(Long id) {
         return repository.findById(id);
     }
 
-    /*
-    arrumarr
-    public PessoaEntity atualizar(Integer id, PessoaEntity pessoa){
-        return repository.save(pessoa);
+    public Optional<PessoaEntity> atualizar(Long id, PessoaEntity pessoa) {
+        return repository.findById(id).map(existente -> {
+            existente.setNome(pessoa.getNome());
+            existente.setIdade(pessoa.getIdade());
+            existente.setEmail(pessoa.getEmail());
+            existente.setTelefone(pessoa.getTelefone());
+            return repository.save(existente);
+        });
     }
 
-    public void excluir(int id){
+    public boolean excluir(Long id) {
+        if (!repository.existsById(id)) {
+            return false;
+        }
         repository.deleteById(id);
+        return true;
     }
-
-     */
 }

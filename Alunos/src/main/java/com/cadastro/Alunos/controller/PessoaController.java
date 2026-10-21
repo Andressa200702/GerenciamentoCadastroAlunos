@@ -1,15 +1,16 @@
 package com.cadastro.Alunos.controller;
 
 import com.cadastro.Alunos.entity.PessoaEntity;
-import com.cadastro.Alunos.repository.PessoaRepository;
 import com.cadastro.Alunos.service.PessoaService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/aluno")
 public class PessoaController {
 
-    private PessoaService service;
+    private final PessoaService service;
 
     public PessoaController(PessoaService service) {
         this.service = service;
@@ -20,22 +21,18 @@ public class PessoaController {
         return service.salvar(pessoa);
     }
 
-    /*
-    arrumar
-    @GetMapping ("/{id}")
-    public PessoaEntity buscar(@PathVariable int id){
-        service.buscar(id);
+    @GetMapping("/buscar/{id}")
+    public Optional<PessoaEntity> buscar(@PathVariable Long id) {
+        return service.buscar(id);
     }
 
-    @PutMapping("/{id}")
-    public PessoaEntity atualizar(@PathVariable int id, @RequestBody PessoaEntity pessoa){
+    @PutMapping("/atualizar/{id}")
+    public Optional<PessoaEntity> atualizar(@PathVariable Long id, @RequestBody PessoaEntity pessoa) {
         return service.atualizar(id, pessoa);
     }
 
-    @DeleteMapping("/{id}")
-    public PessoaRepository excluir(@PathVariable int id){
+    @DeleteMapping("/excluir/{id}")
+    public void excluir(@PathVariable Long id) {
         service.excluir(id);
     }
-     */
-
 }
